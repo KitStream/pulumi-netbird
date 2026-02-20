@@ -1,0 +1,80 @@
+name: Build NetBird Pulumi Provider
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - 'README.md'
+      - 'CHANGELOG.md'
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [1.24.x]
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Setup DotNet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Install Pulumi CLI
+        uses: pulumi/actions@v6
+
+      - name: Build Provider
+        run: |
+          cd provider
+          go build -o ../bin/pulumi-tfgen-netbird ./cmd/pulumi-tfgen-netbird
+          go build -o ../bin/pulumi-resource-netbird ./cmd/pulumi-resource-netbird
+
+      - name: Generate SDKs
+        run: |
+          ./bin/pulumi-tfgen-netbird go --out sdk/go
+          ./bin/pulumi-tfgen-netbird nodejs --out sdk/nodejs
+          ./bin/pulumi-tfgen-netbird python --out sdk/python
+          ./bin/pulumi-tfgen-netbird dotnet --out sdk/dotnet
+          ./bin/pulumi-tfgen-netbird java --out sdk/java
+
+      - name: Build SDKs
+        run: |
+          # Node.js
+          cd sdk/nodejs && npm install && npm run build && cd ../..
+          # Python
+          cd sdk/python && python3 setup.py build && cd ../..
+          # DotNet
+          cd sdk/dotnet && dotnet build && cd ../..
+          # Java
+          cd sdk/java && ./gradlew build && cd ../..
+          # Go
+          cd sdk/go && go build ./... && cd ../..

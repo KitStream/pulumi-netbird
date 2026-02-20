@@ -33,7 +33,7 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:    "https://netbird.io",
 		Repository:  "https://github.com/KitStream/pulumi-netbird",
 		Publisher:   "KitStream",
-		Config: map[string]*tfbridge.SchemaInfo{
+		Config:      map[string]*tfbridge.SchemaInfo{
 			// Add any custom config mapping here
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
@@ -49,8 +49,15 @@ func Provider() tfbridge.ProviderInfo {
 			"netbird_posture_check":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "PostureCheck")},
 			"netbird_route":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Route")},
 			"netbird_setup_key":        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SetupKey")},
-			"netbird_token":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Token")},
-			"netbird_user":             {Tok: tfbridge.MakeResource(mainPkg, mainMod, "User")},
+			"netbird_token": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Token"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"token": {
+						CSharpName: "TokenValue",
+					},
+				},
+			},
+			"netbird_user": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "User")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"netbird_account_settings": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAccountSettings")},

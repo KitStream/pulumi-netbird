@@ -9,6 +9,7 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`netbird` Terraform Provider](https://github.com/netbirdio/terraform-provider-netbird).",
     "repository": "https://github.com/KitStream/pulumi-netbird",
+    "publisher": "KitStream",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },

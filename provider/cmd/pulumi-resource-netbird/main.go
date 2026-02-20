@@ -5,6 +5,8 @@ import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 )
 
+var version string
+
 func main() {
-	tfbridge.Main("netbird", "0.0.1", netbird.Provider(), nil)
+	tfbridge.Main("netbird", version, netbird.Provider(), nil)
 }

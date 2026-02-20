@@ -43,3 +43,4 @@ sdk/java/out/
 
 # Temporary files
 .output.txt
+/upstream/shim/

@@ -5,6 +5,8 @@ import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 )
 
+var version string
+
 func main() {
-	tfgen.Main("netbird", "0.0.1", netbird.Provider())
+	tfgen.Main("netbird", version, netbird.Provider())
 }

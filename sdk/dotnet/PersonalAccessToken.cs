@@ -9,8 +9,8 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Netbird
 {
-    [NetbirdResourceType("netbird:index/token:Token")]
-    public partial class Token : global::Pulumi.CustomResource
+    [NetbirdResourceType("netbird:index/personalAccessToken:PersonalAccessToken")]
+    public partial class PersonalAccessToken : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Creation timestamp
@@ -53,19 +53,19 @@ namespace Pulumi.Netbird
 
 
         /// <summary>
-        /// Create a Token resource with the given unique name, arguments, and options.
+        /// Create a PersonalAccessToken resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Token(string name, TokenArgs args, CustomResourceOptions? options = null)
-            : base("netbird:index/token:Token", name, args ?? new TokenArgs(), MakeResourceOptions(options, ""))
+        public PersonalAccessToken(string name, PersonalAccessTokenArgs args, CustomResourceOptions? options = null)
+            : base("netbird:index/personalAccessToken:PersonalAccessToken", name, args ?? new PersonalAccessTokenArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private Token(string name, Input<string> id, TokenState? state = null, CustomResourceOptions? options = null)
-            : base("netbird:index/token:Token", name, state, MakeResourceOptions(options, id))
+        private PersonalAccessToken(string name, Input<string> id, PersonalAccessTokenState? state = null, CustomResourceOptions? options = null)
+            : base("netbird:index/personalAccessToken:PersonalAccessToken", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -85,7 +85,7 @@ namespace Pulumi.Netbird
             return merged;
         }
         /// <summary>
-        /// Get an existing Token resource's state with the given name, ID, and optional extra
+        /// Get an existing PersonalAccessToken resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -93,13 +93,13 @@ namespace Pulumi.Netbird
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static Token Get(string name, Input<string> id, TokenState? state = null, CustomResourceOptions? options = null)
+        public static PersonalAccessToken Get(string name, Input<string> id, PersonalAccessTokenState? state = null, CustomResourceOptions? options = null)
         {
-            return new Token(name, id, state, options);
+            return new PersonalAccessToken(name, id, state, options);
         }
     }
 
-    public sealed class TokenArgs : global::Pulumi.ResourceArgs
+    public sealed class PersonalAccessTokenArgs : global::Pulumi.ResourceArgs
     {
         [Input("expirationDays", required: true)]
         public Input<int> ExpirationDays { get; set; } = null!;
@@ -116,13 +116,13 @@ namespace Pulumi.Netbird
         [Input("userId", required: true)]
         public Input<string> UserId { get; set; } = null!;
 
-        public TokenArgs()
+        public PersonalAccessTokenArgs()
         {
         }
-        public static new TokenArgs Empty => new TokenArgs();
+        public static new PersonalAccessTokenArgs Empty => new PersonalAccessTokenArgs();
     }
 
-    public sealed class TokenState : global::Pulumi.ResourceArgs
+    public sealed class PersonalAccessTokenState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Creation timestamp
@@ -173,9 +173,9 @@ namespace Pulumi.Netbird
         [Input("userId")]
         public Input<string>? UserId { get; set; }
 
-        public TokenState()
+        public PersonalAccessTokenState()
         {
         }
-        public static new TokenState Empty => new TokenState();
+        public static new PersonalAccessTokenState Empty => new PersonalAccessTokenState();
     }
 }

@@ -3,9 +3,9 @@
 
 package com.netbird.netbird;
 
-import com.netbird.netbird.TokenArgs;
+import com.netbird.netbird.PersonalAccessTokenArgs;
 import com.netbird.netbird.Utilities;
-import com.netbird.netbird.inputs.TokenState;
+import com.netbird.netbird.inputs.PersonalAccessTokenState;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
@@ -15,8 +15,8 @@ import java.lang.String;
 import java.util.List;
 import javax.annotation.Nullable;
 
-@ResourceType(type="netbird:index/token:Token")
-public class Token extends com.pulumi.resources.CustomResource {
+@ResourceType(type="netbird:index/personalAccessToken:PersonalAccessToken")
+public class PersonalAccessToken extends com.pulumi.resources.CustomResource {
     /**
      * Creation timestamp
      * 
@@ -112,15 +112,15 @@ public class Token extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public Token(java.lang.String name) {
-        this(name, TokenArgs.Empty);
+    public PersonalAccessToken(java.lang.String name) {
+        this(name, PersonalAccessTokenArgs.Empty);
     }
     /**
      *
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Token(java.lang.String name, TokenArgs args) {
+    public PersonalAccessToken(java.lang.String name, PersonalAccessTokenArgs args) {
         this(name, args, null);
     }
     /**
@@ -129,19 +129,19 @@ public class Token extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Token(java.lang.String name, TokenArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("netbird:index/token:Token", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
+    public PersonalAccessToken(java.lang.String name, PersonalAccessTokenArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("netbird:index/personalAccessToken:PersonalAccessToken", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private Token(java.lang.String name, Output<java.lang.String> id, @Nullable TokenState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("netbird:index/token:Token", name, state, makeResourceOptions(options, id), false);
+    private PersonalAccessToken(java.lang.String name, Output<java.lang.String> id, @Nullable PersonalAccessTokenState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("netbird:index/personalAccessToken:PersonalAccessToken", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static TokenArgs makeArgs(TokenArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static PersonalAccessTokenArgs makeArgs(PersonalAccessTokenArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }
-        return args == null ? TokenArgs.Empty : args;
+        return args == null ? PersonalAccessTokenArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
@@ -163,7 +163,7 @@ public class Token extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static Token get(java.lang.String name, Output<java.lang.String> id, @Nullable TokenState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        return new Token(name, id, state, options);
+    public static PersonalAccessToken get(java.lang.String name, Output<java.lang.String> id, @Nullable PersonalAccessTokenState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        return new PersonalAccessToken(name, id, state, options);
     }
 }

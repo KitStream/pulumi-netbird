@@ -69,12 +69,12 @@ jobs:
       - name: Build SDKs
         run: |
           # Node.js
-          cd sdk/nodejs && npm install && npm run build && cd ../..
+          (cd sdk/nodejs && npm install && npm run build)
           # Python
-          cd sdk/python && python3 setup.py build && cd ../..
+          (cd sdk/python && python3 setup.py build)
           # DotNet
-          cd sdk/dotnet && dotnet build && cd ../..
+          (cd sdk/dotnet && dotnet build)
           # Java
-          cd sdk/java && ./gradlew build && cd ../..
+          (cd sdk/java && ./gradlew build)
           # Go
-          cd sdk/go && go build ./... && cd ../..
+          (cd sdk/go/index && go build ./...)

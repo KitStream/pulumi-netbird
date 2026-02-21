@@ -1684,6 +1684,99 @@
                 "type": "object"
             }
         },
+        "netbird:index/personalAccessToken:PersonalAccessToken": {
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "Creation timestamp"
+                },
+                "expirationDate": {
+                    "type": "string",
+                    "description": "Token Expiration Date"
+                },
+                "expirationDays": {
+                    "type": "integer"
+                },
+                "lastUsed": {
+                    "type": "string",
+                    "description": "Last usage time"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Token Name"
+                },
+                "token": {
+                    "type": "string",
+                    "description": "Plaintext token",
+                    "secret": true
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "User ID"
+                }
+            },
+            "required": [
+                "createdAt",
+                "expirationDate",
+                "expirationDays",
+                "lastUsed",
+                "name",
+                "token",
+                "userId"
+            ],
+            "inputProperties": {
+                "expirationDays": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Token Name"
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "User ID"
+                }
+            },
+            "requiredInputs": [
+                "expirationDays",
+                "name",
+                "userId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering PersonalAccessToken resources.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Creation timestamp"
+                    },
+                    "expirationDate": {
+                        "type": "string",
+                        "description": "Token Expiration Date"
+                    },
+                    "expirationDays": {
+                        "type": "integer"
+                    },
+                    "lastUsed": {
+                        "type": "string",
+                        "description": "Last usage time"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Token Name"
+                    },
+                    "token": {
+                        "type": "string",
+                        "description": "Plaintext token",
+                        "secret": true
+                    },
+                    "userId": {
+                        "type": "string",
+                        "description": "User ID"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "netbird:index/policy:Policy": {
             "properties": {
                 "description": {
@@ -2271,99 +2364,6 @@
                     "valid": {
                         "type": "boolean",
                         "description": "True if setup key can be used to create more Peers"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "netbird:index/token:Token": {
-            "properties": {
-                "createdAt": {
-                    "type": "string",
-                    "description": "Creation timestamp"
-                },
-                "expirationDate": {
-                    "type": "string",
-                    "description": "Token Expiration Date"
-                },
-                "expirationDays": {
-                    "type": "integer"
-                },
-                "lastUsed": {
-                    "type": "string",
-                    "description": "Last usage time"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Token Name"
-                },
-                "token": {
-                    "type": "string",
-                    "description": "Plaintext token",
-                    "secret": true
-                },
-                "userId": {
-                    "type": "string",
-                    "description": "User ID"
-                }
-            },
-            "required": [
-                "createdAt",
-                "expirationDate",
-                "expirationDays",
-                "lastUsed",
-                "name",
-                "token",
-                "userId"
-            ],
-            "inputProperties": {
-                "expirationDays": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Token Name"
-                },
-                "userId": {
-                    "type": "string",
-                    "description": "User ID"
-                }
-            },
-            "requiredInputs": [
-                "expirationDays",
-                "name",
-                "userId"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering Token resources.\n",
-                "properties": {
-                    "createdAt": {
-                        "type": "string",
-                        "description": "Creation timestamp"
-                    },
-                    "expirationDate": {
-                        "type": "string",
-                        "description": "Token Expiration Date"
-                    },
-                    "expirationDays": {
-                        "type": "integer"
-                    },
-                    "lastUsed": {
-                        "type": "string",
-                        "description": "Last usage time"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "Token Name"
-                    },
-                    "token": {
-                        "type": "string",
-                        "description": "Plaintext token",
-                        "secret": true
-                    },
-                    "userId": {
-                        "type": "string",
-                        "description": "User ID"
                     }
                 },
                 "type": "object"

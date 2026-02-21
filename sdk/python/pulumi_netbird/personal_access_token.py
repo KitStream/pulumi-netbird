@@ -14,16 +14,16 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
-__all__ = ['TokenArgs', 'Token']
+__all__ = ['PersonalAccessTokenArgs', 'PersonalAccessToken']
 
 @pulumi.input_type
-class TokenArgs:
+class PersonalAccessTokenArgs:
     def __init__(__self__, *,
                  expiration_days: pulumi.Input[_builtins.int],
                  name: pulumi.Input[_builtins.str],
                  user_id: pulumi.Input[_builtins.str]):
         """
-        The set of arguments for constructing a Token resource.
+        The set of arguments for constructing a PersonalAccessToken resource.
         :param pulumi.Input[_builtins.str] name: Token Name
         :param pulumi.Input[_builtins.str] user_id: User ID
         """
@@ -66,7 +66,7 @@ class TokenArgs:
 
 
 @pulumi.input_type
-class _TokenState:
+class _PersonalAccessTokenState:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  expiration_date: Optional[pulumi.Input[_builtins.str]] = None,
@@ -76,7 +76,7 @@ class _TokenState:
                  token: Optional[pulumi.Input[_builtins.str]] = None,
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering Token resources.
+        Input properties used for looking up and filtering PersonalAccessToken resources.
         :param pulumi.Input[_builtins.str] created_at: Creation timestamp
         :param pulumi.Input[_builtins.str] expiration_date: Token Expiration Date
         :param pulumi.Input[_builtins.str] last_used: Last usage time
@@ -181,8 +181,8 @@ class _TokenState:
         pulumi.set(self, "user_id", value)
 
 
-@pulumi.type_token("netbird:index/token:Token")
-class Token(pulumi.CustomResource):
+@pulumi.type_token("netbird:index/personalAccessToken:PersonalAccessToken")
+class PersonalAccessToken(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -192,7 +192,7 @@ class Token(pulumi.CustomResource):
                  user_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Create a Token resource with the given unique name, props, and options.
+        Create a PersonalAccessToken resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: Token Name
@@ -202,17 +202,17 @@ class Token(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: TokenArgs,
+                 args: PersonalAccessTokenArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Token resource with the given unique name, props, and options.
+        Create a PersonalAccessToken resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
-        :param TokenArgs args: The arguments to use to populate this resource's properties.
+        :param PersonalAccessTokenArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(TokenArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(PersonalAccessTokenArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -231,7 +231,7 @@ class Token(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = TokenArgs.__new__(TokenArgs)
+            __props__ = PersonalAccessTokenArgs.__new__(PersonalAccessTokenArgs)
 
             if expiration_days is None and not opts.urn:
                 raise TypeError("Missing required property 'expiration_days'")
@@ -248,8 +248,8 @@ class Token(pulumi.CustomResource):
             __props__.__dict__["token"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
-        super(Token, __self__).__init__(
-            'netbird:index/token:Token',
+        super(PersonalAccessToken, __self__).__init__(
+            'netbird:index/personalAccessToken:PersonalAccessToken',
             resource_name,
             __props__,
             opts)
@@ -264,9 +264,9 @@ class Token(pulumi.CustomResource):
             last_used: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             token: Optional[pulumi.Input[_builtins.str]] = None,
-            user_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Token':
+            user_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'PersonalAccessToken':
         """
-        Get an existing Token resource's state with the given name, id, and optional extra
+        Get an existing PersonalAccessToken resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -281,7 +281,7 @@ class Token(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _TokenState.__new__(_TokenState)
+        __props__ = _PersonalAccessTokenState.__new__(_PersonalAccessTokenState)
 
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["expiration_date"] = expiration_date
@@ -290,7 +290,7 @@ class Token(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["token"] = token
         __props__.__dict__["user_id"] = user_id
-        return Token(resource_name, opts=opts, __props__=__props__)
+        return PersonalAccessToken(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")

@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func LookupToken(ctx *pulumi.Context, args *LookupTokenArgs, opts ...pulumi.InvokeOption) (*LookupTokenResult, error) {
+func GetToken(ctx *pulumi.Context, args *GetTokenArgs, opts ...pulumi.InvokeOption) (*GetTokenResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupTokenResult
+	var rv GetTokenResult
 	err := ctx.Invoke("netbird:index/getToken:getToken", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -22,14 +22,14 @@ func LookupToken(ctx *pulumi.Context, args *LookupTokenArgs, opts ...pulumi.Invo
 }
 
 // A collection of arguments for invoking getToken.
-type LookupTokenArgs struct {
+type GetTokenArgs struct {
 	Id     *string `pulumi:"id"`
 	Name   *string `pulumi:"name"`
 	UserId string  `pulumi:"userId"`
 }
 
 // A collection of values returned by getToken.
-type LookupTokenResult struct {
+type GetTokenResult struct {
 	CreatedAt      string `pulumi:"createdAt"`
 	ExpirationDate string `pulumi:"expirationDate"`
 	Id             string `pulumi:"id"`
@@ -38,65 +38,65 @@ type LookupTokenResult struct {
 	UserId         string `pulumi:"userId"`
 }
 
-func LookupTokenOutput(ctx *pulumi.Context, args LookupTokenOutputArgs, opts ...pulumi.InvokeOption) LookupTokenResultOutput {
+func GetTokenOutput(ctx *pulumi.Context, args GetTokenOutputArgs, opts ...pulumi.InvokeOption) GetTokenResultOutput {
 	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupTokenResultOutput, error) {
-			args := v.(LookupTokenArgs)
+		ApplyT(func(v interface{}) (GetTokenResultOutput, error) {
+			args := v.(GetTokenArgs)
 			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("netbird:index/getToken:getToken", args, LookupTokenResultOutput{}, options).(LookupTokenResultOutput), nil
-		}).(LookupTokenResultOutput)
+			return ctx.InvokeOutput("netbird:index/getToken:getToken", args, GetTokenResultOutput{}, options).(GetTokenResultOutput), nil
+		}).(GetTokenResultOutput)
 }
 
 // A collection of arguments for invoking getToken.
-type LookupTokenOutputArgs struct {
+type GetTokenOutputArgs struct {
 	Id     pulumi.StringPtrInput `pulumi:"id"`
 	Name   pulumi.StringPtrInput `pulumi:"name"`
 	UserId pulumi.StringInput    `pulumi:"userId"`
 }
 
-func (LookupTokenOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupTokenArgs)(nil)).Elem()
+func (GetTokenOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTokenArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getToken.
-type LookupTokenResultOutput struct{ *pulumi.OutputState }
+type GetTokenResultOutput struct{ *pulumi.OutputState }
 
-func (LookupTokenResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupTokenResult)(nil)).Elem()
+func (GetTokenResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTokenResult)(nil)).Elem()
 }
 
-func (o LookupTokenResultOutput) ToLookupTokenResultOutput() LookupTokenResultOutput {
+func (o GetTokenResultOutput) ToGetTokenResultOutput() GetTokenResultOutput {
 	return o
 }
 
-func (o LookupTokenResultOutput) ToLookupTokenResultOutputWithContext(ctx context.Context) LookupTokenResultOutput {
+func (o GetTokenResultOutput) ToGetTokenResultOutputWithContext(ctx context.Context) GetTokenResultOutput {
 	return o
 }
 
-func (o LookupTokenResultOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupTokenResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+func (o GetTokenResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTokenResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-func (o LookupTokenResultOutput) ExpirationDate() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupTokenResult) string { return v.ExpirationDate }).(pulumi.StringOutput)
+func (o GetTokenResultOutput) ExpirationDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTokenResult) string { return v.ExpirationDate }).(pulumi.StringOutput)
 }
 
-func (o LookupTokenResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupTokenResult) string { return v.Id }).(pulumi.StringOutput)
+func (o GetTokenResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTokenResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupTokenResultOutput) LastUsed() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupTokenResult) string { return v.LastUsed }).(pulumi.StringOutput)
+func (o GetTokenResultOutput) LastUsed() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTokenResult) string { return v.LastUsed }).(pulumi.StringOutput)
 }
 
-func (o LookupTokenResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupTokenResult) string { return v.Name }).(pulumi.StringOutput)
+func (o GetTokenResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTokenResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o LookupTokenResultOutput) UserId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupTokenResult) string { return v.UserId }).(pulumi.StringOutput)
+func (o GetTokenResultOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTokenResult) string { return v.UserId }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupTokenResultOutput{})
+	pulumi.RegisterOutputType(GetTokenResultOutput{})
 }

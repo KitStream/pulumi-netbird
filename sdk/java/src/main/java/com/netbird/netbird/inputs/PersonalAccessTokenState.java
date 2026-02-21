@@ -12,9 +12,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class TokenState extends com.pulumi.resources.ResourceArgs {
+public final class PersonalAccessTokenState extends com.pulumi.resources.ResourceArgs {
 
-    public static final TokenState Empty = new TokenState();
+    public static final PersonalAccessTokenState Empty = new PersonalAccessTokenState();
 
     /**
      * Creation timestamp
@@ -113,9 +113,9 @@ public final class TokenState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.userId);
     }
 
-    private TokenState() {}
+    private PersonalAccessTokenState() {}
 
-    private TokenState(TokenState $) {
+    private PersonalAccessTokenState(PersonalAccessTokenState $) {
         this.createdAt = $.createdAt;
         this.expirationDate = $.expirationDate;
         this.expirationDays = $.expirationDays;
@@ -128,19 +128,19 @@ public final class TokenState extends com.pulumi.resources.ResourceArgs {
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(TokenState defaults) {
+    public static Builder builder(PersonalAccessTokenState defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private TokenState $;
+        private PersonalAccessTokenState $;
 
         public Builder() {
-            $ = new TokenState();
+            $ = new PersonalAccessTokenState();
         }
 
-        public Builder(TokenState defaults) {
-            $ = new TokenState(Objects.requireNonNull(defaults));
+        public Builder(PersonalAccessTokenState defaults) {
+            $ = new PersonalAccessTokenState(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -278,7 +278,7 @@ public final class TokenState extends com.pulumi.resources.ResourceArgs {
             return userId(Output.of(userId));
         }
 
-        public TokenState build() {
+        public PersonalAccessTokenState build() {
             return $;
         }
     }

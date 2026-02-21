@@ -37,6 +37,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &NetworkRouter{}
 	case "netbird:index/peer:Peer":
 		r = &Peer{}
+	case "netbird:index/personalAccessToken:PersonalAccessToken":
+		r = &PersonalAccessToken{}
 	case "netbird:index/policy:Policy":
 		r = &Policy{}
 	case "netbird:index/postureCheck:PostureCheck":
@@ -45,8 +47,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Route{}
 	case "netbird:index/setupKey:SetupKey":
 		r = &SetupKey{}
-	case "netbird:index/token:Token":
-		r = &Token{}
 	case "netbird:index/user:User":
 		r = &User{}
 	default:
@@ -122,6 +122,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"netbird",
+		"index/personalAccessToken",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"netbird",
 		"index/policy",
 		&module{version},
 	)
@@ -138,11 +143,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"netbird",
 		"index/setupKey",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"netbird",
-		"index/token",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

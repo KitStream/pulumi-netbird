@@ -11,9 +11,9 @@ import java.lang.String;
 import java.util.Objects;
 
 
-public final class TokenArgs extends com.pulumi.resources.ResourceArgs {
+public final class PersonalAccessTokenArgs extends com.pulumi.resources.ResourceArgs {
 
-    public static final TokenArgs Empty = new TokenArgs();
+    public static final PersonalAccessTokenArgs Empty = new PersonalAccessTokenArgs();
 
     @Import(name="expirationDays", required=true)
     private Output<Integer> expirationDays;
@@ -52,9 +52,9 @@ public final class TokenArgs extends com.pulumi.resources.ResourceArgs {
         return this.userId;
     }
 
-    private TokenArgs() {}
+    private PersonalAccessTokenArgs() {}
 
-    private TokenArgs(TokenArgs $) {
+    private PersonalAccessTokenArgs(PersonalAccessTokenArgs $) {
         this.expirationDays = $.expirationDays;
         this.name = $.name;
         this.userId = $.userId;
@@ -63,19 +63,19 @@ public final class TokenArgs extends com.pulumi.resources.ResourceArgs {
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(TokenArgs defaults) {
+    public static Builder builder(PersonalAccessTokenArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private TokenArgs $;
+        private PersonalAccessTokenArgs $;
 
         public Builder() {
-            $ = new TokenArgs();
+            $ = new PersonalAccessTokenArgs();
         }
 
-        public Builder(TokenArgs defaults) {
-            $ = new TokenArgs(Objects.requireNonNull(defaults));
+        public Builder(PersonalAccessTokenArgs defaults) {
+            $ = new PersonalAccessTokenArgs(Objects.requireNonNull(defaults));
         }
 
         public Builder expirationDays(Output<Integer> expirationDays) {
@@ -129,15 +129,15 @@ public final class TokenArgs extends com.pulumi.resources.ResourceArgs {
             return userId(Output.of(userId));
         }
 
-        public TokenArgs build() {
+        public PersonalAccessTokenArgs build() {
             if ($.expirationDays == null) {
-                throw new MissingRequiredPropertyException("TokenArgs", "expirationDays");
+                throw new MissingRequiredPropertyException("PersonalAccessTokenArgs", "expirationDays");
             }
             if ($.name == null) {
-                throw new MissingRequiredPropertyException("TokenArgs", "name");
+                throw new MissingRequiredPropertyException("PersonalAccessTokenArgs", "name");
             }
             if ($.userId == null) {
-                throw new MissingRequiredPropertyException("TokenArgs", "userId");
+                throw new MissingRequiredPropertyException("PersonalAccessTokenArgs", "userId");
             }
             return $;
         }

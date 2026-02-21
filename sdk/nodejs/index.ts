@@ -120,6 +120,11 @@ export type Peer = import("./peer").Peer;
 export const Peer: typeof import("./peer").Peer = null as any;
 utilities.lazyLoad(exports, ["Peer"], () => require("./peer"));
 
+export { PersonalAccessTokenArgs, PersonalAccessTokenState } from "./personalAccessToken";
+export type PersonalAccessToken = import("./personalAccessToken").PersonalAccessToken;
+export const PersonalAccessToken: typeof import("./personalAccessToken").PersonalAccessToken = null as any;
+utilities.lazyLoad(exports, ["PersonalAccessToken"], () => require("./personalAccessToken"));
+
 export { PolicyArgs, PolicyState } from "./policy";
 export type Policy = import("./policy").Policy;
 export const Policy: typeof import("./policy").Policy = null as any;
@@ -142,11 +147,6 @@ export { SetupKeyArgs, SetupKeyState } from "./setupKey";
 export type SetupKey = import("./setupKey").SetupKey;
 export const SetupKey: typeof import("./setupKey").SetupKey = null as any;
 utilities.lazyLoad(exports, ["SetupKey"], () => require("./setupKey"));
-
-export { TokenArgs, TokenState } from "./token";
-export type Token = import("./token").Token;
-export const Token: typeof import("./token").Token = null as any;
-utilities.lazyLoad(exports, ["Token"], () => require("./token"));
 
 export { UserArgs, UserState } from "./user";
 export type User = import("./user").User;
@@ -183,6 +183,8 @@ const _module = {
                 return new NetworkRouter(name, <any>undefined, { urn })
             case "netbird:index/peer:Peer":
                 return new Peer(name, <any>undefined, { urn })
+            case "netbird:index/personalAccessToken:PersonalAccessToken":
+                return new PersonalAccessToken(name, <any>undefined, { urn })
             case "netbird:index/policy:Policy":
                 return new Policy(name, <any>undefined, { urn })
             case "netbird:index/postureCheck:PostureCheck":
@@ -191,8 +193,6 @@ const _module = {
                 return new Route(name, <any>undefined, { urn })
             case "netbird:index/setupKey:SetupKey":
                 return new SetupKey(name, <any>undefined, { urn })
-            case "netbird:index/token:Token":
-                return new Token(name, <any>undefined, { urn })
             case "netbird:index/user:User":
                 return new User(name, <any>undefined, { urn })
             default:
@@ -208,11 +208,11 @@ pulumi.runtime.registerResourceModule("netbird", "index/network", _module)
 pulumi.runtime.registerResourceModule("netbird", "index/networkResource", _module)
 pulumi.runtime.registerResourceModule("netbird", "index/networkRouter", _module)
 pulumi.runtime.registerResourceModule("netbird", "index/peer", _module)
+pulumi.runtime.registerResourceModule("netbird", "index/personalAccessToken", _module)
 pulumi.runtime.registerResourceModule("netbird", "index/policy", _module)
 pulumi.runtime.registerResourceModule("netbird", "index/postureCheck", _module)
 pulumi.runtime.registerResourceModule("netbird", "index/route", _module)
 pulumi.runtime.registerResourceModule("netbird", "index/setupKey", _module)
-pulumi.runtime.registerResourceModule("netbird", "index/token", _module)
 pulumi.runtime.registerResourceModule("netbird", "index/user", _module)
 pulumi.runtime.registerResourcePackage("netbird", {
     version: utilities.getVersion(),

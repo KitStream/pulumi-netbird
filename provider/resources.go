@@ -50,12 +50,7 @@ func Provider() tfbridge.ProviderInfo {
 			"netbird_route":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Route")},
 			"netbird_setup_key":        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SetupKey")},
 			"netbird_token": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Token"),
-				Fields: map[string]*tfbridge.SchemaInfo{
-					"token": {
-						CSharpName: "TokenValue",
-					},
-				},
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "PersonalAccessToken"),
 			},
 			"netbird_user": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "User")},
 		},

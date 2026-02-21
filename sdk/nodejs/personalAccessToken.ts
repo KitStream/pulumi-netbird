@@ -4,9 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-export class Token extends pulumi.CustomResource {
+export class PersonalAccessToken extends pulumi.CustomResource {
     /**
-     * Get an existing Token resource's state with the given name, ID, and optional extra
+     * Get an existing PersonalAccessToken resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -14,22 +14,22 @@ export class Token extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: TokenState, opts?: pulumi.CustomResourceOptions): Token {
-        return new Token(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: PersonalAccessTokenState, opts?: pulumi.CustomResourceOptions): PersonalAccessToken {
+        return new PersonalAccessToken(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'netbird:index/token:Token';
+    public static readonly __pulumiType = 'netbird:index/personalAccessToken:PersonalAccessToken';
 
     /**
-     * Returns true if the given object is an instance of Token.  This is designed to work even
+     * Returns true if the given object is an instance of PersonalAccessToken.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is Token {
+    public static isInstance(obj: any): obj is PersonalAccessToken {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Token.__pulumiType;
+        return obj['__pulumiType'] === PersonalAccessToken.__pulumiType;
     }
 
     /**
@@ -59,18 +59,18 @@ export class Token extends pulumi.CustomResource {
     declare public readonly userId: pulumi.Output<string>;
 
     /**
-     * Create a Token resource with the given unique name, arguments, and options.
+     * Create a PersonalAccessToken resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: TokenArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: TokenArgs | TokenState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: PersonalAccessTokenArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: PersonalAccessTokenArgs | PersonalAccessTokenState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as TokenState | undefined;
+            const state = argsOrState as PersonalAccessTokenState | undefined;
             resourceInputs["createdAt"] = state?.createdAt;
             resourceInputs["expirationDate"] = state?.expirationDate;
             resourceInputs["expirationDays"] = state?.expirationDays;
@@ -79,7 +79,7 @@ export class Token extends pulumi.CustomResource {
             resourceInputs["token"] = state?.token;
             resourceInputs["userId"] = state?.userId;
         } else {
-            const args = argsOrState as TokenArgs | undefined;
+            const args = argsOrState as PersonalAccessTokenArgs | undefined;
             if (args?.expirationDays === undefined && !opts.urn) {
                 throw new Error("Missing required property 'expirationDays'");
             }
@@ -100,14 +100,14 @@ export class Token extends pulumi.CustomResource {
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["token"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
-        super(Token.__pulumiType, name, resourceInputs, opts);
+        super(PersonalAccessToken.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering Token resources.
+ * Input properties used for looking up and filtering PersonalAccessToken resources.
  */
-export interface TokenState {
+export interface PersonalAccessTokenState {
     /**
      * Creation timestamp
      */
@@ -136,9 +136,9 @@ export interface TokenState {
 }
 
 /**
- * The set of arguments for constructing a Token resource.
+ * The set of arguments for constructing a PersonalAccessToken resource.
  */
-export interface TokenArgs {
+export interface PersonalAccessTokenArgs {
     expirationDays: pulumi.Input<number>;
     /**
      * Token Name

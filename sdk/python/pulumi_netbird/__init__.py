@@ -29,12 +29,12 @@ from .network import *
 from .network_resource import *
 from .network_router import *
 from .peer import *
+from .personal_access_token import *
 from .policy import *
 from .posture_check import *
 from .provider import *
 from .route import *
 from .setup_key import *
-from .token import *
 from .user import *
 from ._inputs import *
 from . import outputs
@@ -115,6 +115,14 @@ _utilities.register(
  },
  {
   "pkg": "netbird",
+  "mod": "index/personalAccessToken",
+  "fqn": "pulumi_netbird",
+  "classes": {
+   "netbird:index/personalAccessToken:PersonalAccessToken": "PersonalAccessToken"
+  }
+ },
+ {
+  "pkg": "netbird",
   "mod": "index/policy",
   "fqn": "pulumi_netbird",
   "classes": {
@@ -143,14 +151,6 @@ _utilities.register(
   "fqn": "pulumi_netbird",
   "classes": {
    "netbird:index/setupKey:SetupKey": "SetupKey"
-  }
- },
- {
-  "pkg": "netbird",
-  "mod": "index/token",
-  "fqn": "pulumi_netbird",
-  "classes": {
-   "netbird:index/token:Token": "Token"
   }
  },
  {

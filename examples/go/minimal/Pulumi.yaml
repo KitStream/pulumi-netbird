@@ -1,0 +1,3 @@
+name: netbird-go-minimal
+description: A minimal Pulumi Go program using the netbird provider
+runtime: go

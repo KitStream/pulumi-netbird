@@ -1,12 +1,24 @@
 package main
 
 import (
+	"context"
+	_ "embed"
+
 	netbird "github.com/KitStream/pulumi-netbird/provider"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 )
 
 var version string
 
+//go:embed schema.json
+var schema []byte
+
+//go:embed bridge-metadata.json
+var bridgeMetadata []byte
+
 func main() {
-	tfbridge.Main("netbird", version, netbird.Provider(version), nil)
+	tfbridge.Main(context.Background(), "netbird", netbird.Provider(version), tfbridge.ProviderMetadata{
+		PackageSchema:  schema,
+		BridgeMetadata: bridgeMetadata,
+	})
 }

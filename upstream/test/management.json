@@ -15,7 +15,7 @@
     "Password": ""
   },
   "Datadir": "/var/lib/netbird",
-  "DataStoreEncryptionKey": "0DStg6EdSwXQDOnr7uZHNBfJmzDsoqmR",
+  "DataStoreEncryptionKey": "Zm4cgxLh3jzUvul22IyVvyLj3ldLJMcV/jdpXLnB6eQ=",
   "HttpConfig": {
     "AuthIssuer": "http://192.168.1.11:8080",
     "AuthAudience": "mock-audience",

@@ -7,6 +7,7 @@ import (
 	"github.com/netbirdio/terraform-provider-netbird/shim/provider"
 	pftfbridge "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 )
 
 // all of the token components used below.
@@ -19,22 +20,26 @@ const (
 
 // Provider returns additional overlaid control over the Terraform provider
 func Provider(version string) tfbridge.ProviderInfo {
+	if version == "" {
+		version = "0.0.1"
+	}
 	// Instantiate the Terraform provider
 	p := pftfbridge.ShimProvider(provider.New("0.0.7")())
 
 	// Create a Pulumi provider control struct
 	prov := tfbridge.ProviderInfo{
-		P:           p,
-		Name:        "netbird",
-		GitHubOrg:   "netbirdio",
-		Description: "A Pulumi package for creating and managing netbird cloud resources.",
-		Keywords:    []string{"pulumi", "netbird"},
-		License:     "Apache-2.0",
-		Homepage:    "https://netbird.io",
-		Repository:  "https://github.com/KitStream/pulumi-netbird",
-		Publisher:   "KitStream",
-		Version:     version,
-		Config:      map[string]*tfbridge.SchemaInfo{
+		P:            p,
+		Name:         "netbird",
+		GitHubOrg:    "netbirdio",
+		Description:  "A Pulumi package for creating and managing netbird cloud resources.",
+		Keywords:     []string{"pulumi", "netbird"},
+		License:      "Apache-2.0",
+		Homepage:     "https://netbird.io",
+		Repository:   "https://github.com/KitStream/pulumi-netbird",
+		Publisher:    "KitStream",
+		Version:      version,
+		MetadataInfo: tfbridge.NewProviderMetadata([]byte("{}")),
+		Config:       map[string]*tfbridge.SchemaInfo{
 			// Add any custom config mapping here
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
@@ -45,11 +50,19 @@ func Provider(version string) tfbridge.ProviderInfo {
 			"netbird_network":          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Network")},
 			"netbird_network_resource": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "NetworkResource")},
 			"netbird_network_router":   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "NetworkRouter")},
-			"netbird_peer":             {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Peer")},
-			"netbird_policy":           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Policy")},
-			"netbird_posture_check":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "PostureCheck")},
-			"netbird_route":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Route")},
-			"netbird_setup_key":        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SetupKey")},
+			"netbird_peer": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Peer"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"id": {
+						Name: "peerId",
+					},
+				},
+				ComputeID: tfbridge.DelegateIDField(resource.PropertyKey("peerId"), "netbird", "https://github.com/KitStream/pulumi-netbird"),
+			},
+			"netbird_policy":        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Policy")},
+			"netbird_posture_check": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "PostureCheck")},
+			"netbird_route":         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Route")},
+			"netbird_setup_key":     {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SetupKey")},
 			"netbird_token": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "PersonalAccessToken"),
 			},

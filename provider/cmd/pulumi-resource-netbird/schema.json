@@ -1506,6 +1506,10 @@
                     "type": "string",
                     "description": "Peer OS"
                 },
+                "peerId": {
+                    "type": "string",
+                    "description": "Peer ID"
+                },
                 "serialNumber": {
                     "type": "string",
                     "description": "Peer device serial number"
@@ -1538,6 +1542,7 @@
                 "geonameId",
                 "groups",
                 "hostname",
+                "peerId",
                 "inactivityExpirationEnabled",
                 "ip",
                 "kernelVersion",
@@ -1570,11 +1575,18 @@
                     "type": "string",
                     "description": "Peer Name"
                 },
+                "peerId": {
+                    "type": "string",
+                    "description": "Peer ID"
+                },
                 "sshEnabled": {
                     "type": "boolean",
                     "description": "Enable SSH to Peer"
                 }
             },
+            "requiredInputs": [
+                "peerId"
+            ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Peer resources.\n",
                 "properties": {
@@ -1659,6 +1671,10 @@
                     "os": {
                         "type": "string",
                         "description": "Peer OS"
+                    },
+                    "peerId": {
+                        "type": "string",
+                        "description": "Peer ID"
                     },
                     "serialNumber": {
                         "type": "string",

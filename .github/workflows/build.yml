@@ -70,6 +70,6 @@ jobs:
           # DotNet
           (cd sdk/dotnet && dotnet build)
           # Java
-          (cd sdk/java && ./gradlew build)
+          (cd sdk/java && gradle build)
           # Go
           (cd sdk/go/index && go build ./...)

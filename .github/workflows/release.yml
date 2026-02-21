@@ -93,7 +93,7 @@ jobs:
       - name: Publish Java SDK
         run: |
           cd sdk/java
-          ./gradlew publish
+          gradle publish
         env:
           PACKAGE_VERSION: ${{ steps.get_version.outputs.VERSION }}
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}

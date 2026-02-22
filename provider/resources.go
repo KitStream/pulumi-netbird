@@ -112,7 +112,7 @@ func Provider(version string) tfbridge.ProviderInfo {
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
-			RootNamespace: "Pulumi.KitStream",
+			RootNamespace: "KitStream.Pulumi",
 		},
 		Java: &tfbridge.JavaInfo{
 			BasePackage: "com.netbird",

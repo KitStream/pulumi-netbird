@@ -20,7 +20,7 @@
                 "Pulumi": "3.*"
             },
             "compatibility": "tfbridge20",
-            "rootNamespace": "Pulumi.KitStream"
+            "rootNamespace": "KitStream.Pulumi"
         },
         "go": {
             "importBasePath": "github.com/KitStream/netbird-pulumi-provider/sdk/go/index",

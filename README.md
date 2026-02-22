@@ -11,7 +11,7 @@ The following SDKs are available and automatically updated:
 - **NodeJS** (`@pulumi/netbird` on npm)
 - **Python** (`pulumi_netbird` on PyPI)
 - **Go** (`github.com/KitStream/netbird-pulumi-provider/sdk/go/index`)
-- **.NET** (`Pulumi.KitStream.Netbird` on NuGet)
+- **.NET** (`KitStream.Pulumi.Netbird` on NuGet)
 - **Java** (`com.netbird:netbird` on Maven Central)
 
 ## Installation

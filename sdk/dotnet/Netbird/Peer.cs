@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumi.KitStream.Netbird
+namespace KitStream.Pulumi.Netbird
 {
     [NetbirdResourceType("netbird:index/peer:Peer")]
     public partial class Peer : global::Pulumi.CustomResource

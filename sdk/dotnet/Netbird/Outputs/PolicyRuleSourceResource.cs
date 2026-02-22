@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumi.KitStream.Netbird.Outputs
+namespace KitStream.Pulumi.Netbird.Outputs
 {
 
     [OutputType]

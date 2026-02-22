@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumi.KitStream.Netbird
+namespace KitStream.Pulumi.Netbird
 {
     /// <summary>
     /// The provider type for the netbird package. By default, resources use package-wide configuration

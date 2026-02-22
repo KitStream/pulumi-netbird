@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Pulumi.KitStream.Netbird
+namespace KitStream.Pulumi.Netbird
 {
     public static class Config
     {

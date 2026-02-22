@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumi.KitStream.Netbird.Inputs
+namespace KitStream.Pulumi.Netbird.Inputs
 {
 
     public sealed class NameserverGroupNameserverArgs : global::Pulumi.ResourceArgs

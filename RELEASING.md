@@ -77,6 +77,13 @@ Maven Central requires artifacts to be signed.
 2.  **Generate Key**: `gpg --full-generate-key` (Use RSA, 4096 bits, no expiration).
 3.  **Find Key ID**: `gpg --list-secret-keys --keyid-format=long`. (e.g., `AB12CD34EF56GH78`).
 4.  **Publish Public Key**: `gpg --keyserver keyserver.ubuntu.com --send-keys YOUR_KEY_ID`.
+    *   **Troubleshooting "No route to host"**: This error is often caused by firewalls blocking the default GPG port (11371).
+    *   **Solution 1 (HKPS)**: Use port 443 (HTTPS):
+        ```bash
+        gpg --keyserver hkps://keyserver.ubuntu.com --send-keys YOUR_KEY_ID
+        ```
+    *   **Solution 2 (Alternative Servers)**: Try `hkps://keys.openpgp.org` or `hkps://pgp.mit.edu`.
+    *   **Solution 3 (Manual Upload)**: Export your public key (`gpg --armor --export YOUR_KEY_ID > public.key`) and upload it via the [keyserver.ubuntu.com](https://keyserver.ubuntu.com/) web interface.
 5.  **Export Private Key**: `gpg --armor --export-secret-keys YOUR_KEY_ID` (Copy the entire block starting with `-----BEGIN PGP PRIVATE KEY BLOCK-----` for `JAVA_SIGNING_KEY`).
 6.  **Passphrase**: The passphrase you used during generation is `JAVA_SIGNING_PASSWORD`.
 

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"errors"
 	"github.com/KitStream/pulumi-netbird/sdk/go/index/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -52,6 +53,8 @@ type Peer struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Peer OS
 	Os pulumi.StringOutput `pulumi:"os"`
+	// Peer ID
+	PeerId pulumi.StringOutput `pulumi:"peerId"`
 	// Peer device serial number
 	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
 	// Enable SSH to Peer
@@ -68,9 +71,12 @@ type Peer struct {
 func NewPeer(ctx *pulumi.Context,
 	name string, args *PeerArgs, opts ...pulumi.ResourceOption) (*Peer, error) {
 	if args == nil {
-		args = &PeerArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.PeerId == nil {
+		return nil, errors.New("invalid value for required argument 'PeerId'")
+	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Peer
 	err := ctx.RegisterResource("netbird:index/peer:Peer", name, args, &resource, opts...)
@@ -132,6 +138,8 @@ type peerState struct {
 	Name *string `pulumi:"name"`
 	// Peer OS
 	Os *string `pulumi:"os"`
+	// Peer ID
+	PeerId *string `pulumi:"peerId"`
 	// Peer device serial number
 	SerialNumber *string `pulumi:"serialNumber"`
 	// Enable SSH to Peer
@@ -183,6 +191,8 @@ type PeerState struct {
 	Name pulumi.StringPtrInput
 	// Peer OS
 	Os pulumi.StringPtrInput
+	// Peer ID
+	PeerId pulumi.StringPtrInput
 	// Peer device serial number
 	SerialNumber pulumi.StringPtrInput
 	// Enable SSH to Peer
@@ -208,6 +218,8 @@ type peerArgs struct {
 	LoginExpirationEnabled *bool `pulumi:"loginExpirationEnabled"`
 	// Peer Name
 	Name *string `pulumi:"name"`
+	// Peer ID
+	PeerId string `pulumi:"peerId"`
 	// Enable SSH to Peer
 	SshEnabled *bool `pulumi:"sshEnabled"`
 }
@@ -222,6 +234,8 @@ type PeerArgs struct {
 	LoginExpirationEnabled pulumi.BoolPtrInput
 	// Peer Name
 	Name pulumi.StringPtrInput
+	// Peer ID
+	PeerId pulumi.StringInput
 	// Enable SSH to Peer
 	SshEnabled pulumi.BoolPtrInput
 }
@@ -406,6 +420,11 @@ func (o PeerOutput) Name() pulumi.StringOutput {
 // Peer OS
 func (o PeerOutput) Os() pulumi.StringOutput {
 	return o.ApplyT(func(v *Peer) pulumi.StringOutput { return v.Os }).(pulumi.StringOutput)
+}
+
+// Peer ID
+func (o PeerOutput) PeerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Peer) pulumi.StringOutput { return v.PeerId }).(pulumi.StringOutput)
 }
 
 // Peer device serial number

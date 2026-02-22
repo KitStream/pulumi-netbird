@@ -5,6 +5,7 @@ package com.netbird.netbird;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -77,6 +78,21 @@ public final class PeerArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Peer ID
+     * 
+     */
+    @Import(name="peerId", required=true)
+    private Output<String> peerId;
+
+    /**
+     * @return Peer ID
+     * 
+     */
+    public Output<String> peerId() {
+        return this.peerId;
+    }
+
+    /**
      * Enable SSH to Peer
      * 
      */
@@ -98,6 +114,7 @@ public final class PeerArgs extends com.pulumi.resources.ResourceArgs {
         this.inactivityExpirationEnabled = $.inactivityExpirationEnabled;
         this.loginExpirationEnabled = $.loginExpirationEnabled;
         this.name = $.name;
+        this.peerId = $.peerId;
         this.sshEnabled = $.sshEnabled;
     }
 
@@ -204,6 +221,27 @@ public final class PeerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param peerId Peer ID
+         * 
+         * @return builder
+         * 
+         */
+        public Builder peerId(Output<String> peerId) {
+            $.peerId = peerId;
+            return this;
+        }
+
+        /**
+         * @param peerId Peer ID
+         * 
+         * @return builder
+         * 
+         */
+        public Builder peerId(String peerId) {
+            return peerId(Output.of(peerId));
+        }
+
+        /**
          * @param sshEnabled Enable SSH to Peer
          * 
          * @return builder
@@ -225,6 +263,9 @@ public final class PeerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public PeerArgs build() {
+            if ($.peerId == null) {
+                throw new MissingRequiredPropertyException("PeerArgs", "peerId");
+            }
             return $;
         }
     }

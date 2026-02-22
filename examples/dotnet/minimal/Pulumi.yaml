@@ -1,0 +1,3 @@
+name: minimal-dotnet
+runtime: dotnet
+description: A minimal Pulumi .NET program

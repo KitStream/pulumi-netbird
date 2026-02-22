@@ -127,6 +127,12 @@ namespace Pulumi.Netbird
         public Output<string> Os { get; private set; } = null!;
 
         /// <summary>
+        /// Peer ID
+        /// </summary>
+        [Output("peerId")]
+        public Output<string> PeerId { get; private set; } = null!;
+
+        /// <summary>
         /// Peer device serial number
         /// </summary>
         [Output("serialNumber")]
@@ -164,7 +170,7 @@ namespace Pulumi.Netbird
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Peer(string name, PeerArgs? args = null, CustomResourceOptions? options = null)
+        public Peer(string name, PeerArgs args, CustomResourceOptions? options = null)
             : base("netbird:index/peer:Peer", name, args ?? new PeerArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -225,6 +231,12 @@ namespace Pulumi.Netbird
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Peer ID
+        /// </summary>
+        [Input("peerId", required: true)]
+        public Input<string> PeerId { get; set; } = null!;
 
         /// <summary>
         /// Enable SSH to Peer
@@ -365,6 +377,12 @@ namespace Pulumi.Netbird
         /// </summary>
         [Input("os")]
         public Input<string>? Os { get; set; }
+
+        /// <summary>
+        /// Peer ID
+        /// </summary>
+        [Input("peerId")]
+        public Input<string>? PeerId { get; set; }
 
         /// <summary>
         /// Peer device serial number

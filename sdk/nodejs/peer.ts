@@ -109,6 +109,10 @@ export class Peer extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly os: pulumi.Output<string>;
     /**
+     * Peer ID
+     */
+    declare public readonly peerId: pulumi.Output<string>;
+    /**
      * Peer device serial number
      */
     declare public /*out*/ readonly serialNumber: pulumi.Output<string>;
@@ -136,7 +140,7 @@ export class Peer extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: PeerArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args: PeerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: PeerArgs | PeerState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -161,6 +165,7 @@ export class Peer extends pulumi.CustomResource {
             resourceInputs["loginExpired"] = state?.loginExpired;
             resourceInputs["name"] = state?.name;
             resourceInputs["os"] = state?.os;
+            resourceInputs["peerId"] = state?.peerId;
             resourceInputs["serialNumber"] = state?.serialNumber;
             resourceInputs["sshEnabled"] = state?.sshEnabled;
             resourceInputs["uiVersion"] = state?.uiVersion;
@@ -168,10 +173,14 @@ export class Peer extends pulumi.CustomResource {
             resourceInputs["version"] = state?.version;
         } else {
             const args = argsOrState as PeerArgs | undefined;
+            if (args?.peerId === undefined && !opts.urn) {
+                throw new Error("Missing required property 'peerId'");
+            }
             resourceInputs["approvalRequired"] = args?.approvalRequired;
             resourceInputs["inactivityExpirationEnabled"] = args?.inactivityExpirationEnabled;
             resourceInputs["loginExpirationEnabled"] = args?.loginExpirationEnabled;
             resourceInputs["name"] = args?.name;
+            resourceInputs["peerId"] = args?.peerId;
             resourceInputs["sshEnabled"] = args?.sshEnabled;
             resourceInputs["cityName"] = undefined /*out*/;
             resourceInputs["connected"] = undefined /*out*/;
@@ -279,6 +288,10 @@ export interface PeerState {
      */
     os?: pulumi.Input<string>;
     /**
+     * Peer ID
+     */
+    peerId?: pulumi.Input<string>;
+    /**
      * Peer device serial number
      */
     serialNumber?: pulumi.Input<string>;
@@ -320,6 +333,10 @@ export interface PeerArgs {
      * Peer Name
      */
     name?: pulumi.Input<string>;
+    /**
+     * Peer ID
+     */
+    peerId: pulumi.Input<string>;
     /**
      * Enable SSH to Peer
      */

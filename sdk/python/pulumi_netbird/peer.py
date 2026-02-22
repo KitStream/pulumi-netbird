@@ -19,6 +19,7 @@ __all__ = ['PeerArgs', 'Peer']
 @pulumi.input_type
 class PeerArgs:
     def __init__(__self__, *,
+                 peer_id: pulumi.Input[_builtins.str],
                  approval_required: Optional[pulumi.Input[_builtins.bool]] = None,
                  inactivity_expiration_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  login_expiration_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -26,12 +27,14 @@ class PeerArgs:
                  ssh_enabled: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Peer resource.
+        :param pulumi.Input[_builtins.str] peer_id: Peer ID
         :param pulumi.Input[_builtins.bool] approval_required: Indicates whether peer needs approval
         :param pulumi.Input[_builtins.bool] inactivity_expiration_enabled: Enable inactivity expiration for peer
         :param pulumi.Input[_builtins.bool] login_expiration_enabled: Indicates whether login expiration is enabled for peer
         :param pulumi.Input[_builtins.str] name: Peer Name
         :param pulumi.Input[_builtins.bool] ssh_enabled: Enable SSH to Peer
         """
+        pulumi.set(__self__, "peer_id", peer_id)
         if approval_required is not None:
             pulumi.set(__self__, "approval_required", approval_required)
         if inactivity_expiration_enabled is not None:
@@ -42,6 +45,18 @@ class PeerArgs:
             pulumi.set(__self__, "name", name)
         if ssh_enabled is not None:
             pulumi.set(__self__, "ssh_enabled", ssh_enabled)
+
+    @_builtins.property
+    @pulumi.getter(name="peerId")
+    def peer_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Peer ID
+        """
+        return pulumi.get(self, "peer_id")
+
+    @peer_id.setter
+    def peer_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "peer_id", value)
 
     @_builtins.property
     @pulumi.getter(name="approvalRequired")
@@ -126,6 +141,7 @@ class _PeerState:
                  login_expired: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  os: Optional[pulumi.Input[_builtins.str]] = None,
+                 peer_id: Optional[pulumi.Input[_builtins.str]] = None,
                  serial_number: Optional[pulumi.Input[_builtins.str]] = None,
                  ssh_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  ui_version: Optional[pulumi.Input[_builtins.str]] = None,
@@ -152,6 +168,7 @@ class _PeerState:
         :param pulumi.Input[_builtins.bool] login_expired: Indicates whether peer login is expired
         :param pulumi.Input[_builtins.str] name: Peer Name
         :param pulumi.Input[_builtins.str] os: Peer OS
+        :param pulumi.Input[_builtins.str] peer_id: Peer ID
         :param pulumi.Input[_builtins.str] serial_number: Peer device serial number
         :param pulumi.Input[_builtins.bool] ssh_enabled: Enable SSH to Peer
         :param pulumi.Input[_builtins.str] ui_version: Peer  UI Version
@@ -196,6 +213,8 @@ class _PeerState:
             pulumi.set(__self__, "name", name)
         if os is not None:
             pulumi.set(__self__, "os", os)
+        if peer_id is not None:
+            pulumi.set(__self__, "peer_id", peer_id)
         if serial_number is not None:
             pulumi.set(__self__, "serial_number", serial_number)
         if ssh_enabled is not None:
@@ -436,6 +455,18 @@ class _PeerState:
         pulumi.set(self, "os", value)
 
     @_builtins.property
+    @pulumi.getter(name="peerId")
+    def peer_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Peer ID
+        """
+        return pulumi.get(self, "peer_id")
+
+    @peer_id.setter
+    def peer_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "peer_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="serialNumber")
     def serial_number(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -506,6 +537,7 @@ class Peer(pulumi.CustomResource):
                  inactivity_expiration_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  login_expiration_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 peer_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ssh_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
@@ -516,13 +548,14 @@ class Peer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] inactivity_expiration_enabled: Enable inactivity expiration for peer
         :param pulumi.Input[_builtins.bool] login_expiration_enabled: Indicates whether login expiration is enabled for peer
         :param pulumi.Input[_builtins.str] name: Peer Name
+        :param pulumi.Input[_builtins.str] peer_id: Peer ID
         :param pulumi.Input[_builtins.bool] ssh_enabled: Enable SSH to Peer
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[PeerArgs] = None,
+                 args: PeerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a Peer resource with the given unique name, props, and options.
@@ -545,6 +578,7 @@ class Peer(pulumi.CustomResource):
                  inactivity_expiration_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  login_expiration_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 peer_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ssh_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -559,6 +593,9 @@ class Peer(pulumi.CustomResource):
             __props__.__dict__["inactivity_expiration_enabled"] = inactivity_expiration_enabled
             __props__.__dict__["login_expiration_enabled"] = login_expiration_enabled
             __props__.__dict__["name"] = name
+            if peer_id is None and not opts.urn:
+                raise TypeError("Missing required property 'peer_id'")
+            __props__.__dict__["peer_id"] = peer_id
             __props__.__dict__["ssh_enabled"] = ssh_enabled
             __props__.__dict__["city_name"] = None
             __props__.__dict__["connected"] = None
@@ -608,6 +645,7 @@ class Peer(pulumi.CustomResource):
             login_expired: Optional[pulumi.Input[_builtins.bool]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             os: Optional[pulumi.Input[_builtins.str]] = None,
+            peer_id: Optional[pulumi.Input[_builtins.str]] = None,
             serial_number: Optional[pulumi.Input[_builtins.str]] = None,
             ssh_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             ui_version: Optional[pulumi.Input[_builtins.str]] = None,
@@ -639,6 +677,7 @@ class Peer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] login_expired: Indicates whether peer login is expired
         :param pulumi.Input[_builtins.str] name: Peer Name
         :param pulumi.Input[_builtins.str] os: Peer OS
+        :param pulumi.Input[_builtins.str] peer_id: Peer ID
         :param pulumi.Input[_builtins.str] serial_number: Peer device serial number
         :param pulumi.Input[_builtins.bool] ssh_enabled: Enable SSH to Peer
         :param pulumi.Input[_builtins.str] ui_version: Peer  UI Version
@@ -668,6 +707,7 @@ class Peer(pulumi.CustomResource):
         __props__.__dict__["login_expired"] = login_expired
         __props__.__dict__["name"] = name
         __props__.__dict__["os"] = os
+        __props__.__dict__["peer_id"] = peer_id
         __props__.__dict__["serial_number"] = serial_number
         __props__.__dict__["ssh_enabled"] = ssh_enabled
         __props__.__dict__["ui_version"] = ui_version
@@ -826,6 +866,14 @@ class Peer(pulumi.CustomResource):
         Peer OS
         """
         return pulumi.get(self, "os")
+
+    @_builtins.property
+    @pulumi.getter(name="peerId")
+    def peer_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        Peer ID
+        """
+        return pulumi.get(self, "peer_id")
 
     @_builtins.property
     @pulumi.getter(name="serialNumber")

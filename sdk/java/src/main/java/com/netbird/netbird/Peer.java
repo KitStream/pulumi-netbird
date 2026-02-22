@@ -285,6 +285,20 @@ public class Peer extends com.pulumi.resources.CustomResource {
         return this.os;
     }
     /**
+     * Peer ID
+     * 
+     */
+    @Export(name="peerId", refs={String.class}, tree="[0]")
+    private Output<String> peerId;
+
+    /**
+     * @return Peer ID
+     * 
+     */
+    public Output<String> peerId() {
+        return this.peerId;
+    }
+    /**
      * Peer device serial number
      * 
      */
@@ -367,7 +381,7 @@ public class Peer extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Peer(java.lang.String name, @Nullable PeerArgs args) {
+    public Peer(java.lang.String name, PeerArgs args) {
         this(name, args, null);
     }
     /**
@@ -376,7 +390,7 @@ public class Peer extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Peer(java.lang.String name, @Nullable PeerArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public Peer(java.lang.String name, PeerArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("netbird:index/peer:Peer", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
@@ -384,7 +398,7 @@ public class Peer extends com.pulumi.resources.CustomResource {
         super("netbird:index/peer:Peer", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static PeerArgs makeArgs(@Nullable PeerArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static PeerArgs makeArgs(PeerArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }

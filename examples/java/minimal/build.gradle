@@ -1,0 +1,21 @@
+plugins {
+    id("java")
+    id("application")
+}
+
+group = "com.minimal"
+version = "0.1.0"
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation("com.pulumi:pulumi:1.0.0")
+    implementation("com.netbird:netbird:0.0.1")
+}
+
+application {
+    mainClass = "com.minimal.App"
+}

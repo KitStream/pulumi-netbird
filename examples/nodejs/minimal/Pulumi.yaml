@@ -1,0 +1,3 @@
+name: minimal-nodejs
+runtime: nodejs
+description: A minimal Pulumi TypeScript program

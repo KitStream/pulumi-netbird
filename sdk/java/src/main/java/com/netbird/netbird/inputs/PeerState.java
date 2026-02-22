@@ -304,6 +304,21 @@ public final class PeerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Peer ID
+     * 
+     */
+    @Import(name="peerId")
+    private @Nullable Output<String> peerId;
+
+    /**
+     * @return Peer ID
+     * 
+     */
+    public Optional<Output<String>> peerId() {
+        return Optional.ofNullable(this.peerId);
+    }
+
+    /**
      * Peer device serial number
      * 
      */
@@ -400,6 +415,7 @@ public final class PeerState extends com.pulumi.resources.ResourceArgs {
         this.loginExpired = $.loginExpired;
         this.name = $.name;
         this.os = $.os;
+        this.peerId = $.peerId;
         this.serialNumber = $.serialNumber;
         this.sshEnabled = $.sshEnabled;
         this.uiVersion = $.uiVersion;
@@ -842,6 +858,27 @@ public final class PeerState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder os(String os) {
             return os(Output.of(os));
+        }
+
+        /**
+         * @param peerId Peer ID
+         * 
+         * @return builder
+         * 
+         */
+        public Builder peerId(@Nullable Output<String> peerId) {
+            $.peerId = peerId;
+            return this;
+        }
+
+        /**
+         * @param peerId Peer ID
+         * 
+         * @return builder
+         * 
+         */
+        public Builder peerId(String peerId) {
+            return peerId(Output.of(peerId));
         }
 
         /**

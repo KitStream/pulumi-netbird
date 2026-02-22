@@ -1,6 +1,6 @@
 # .goreleaser.yml
 # This file is used by the Release GitHub Action to build and distribute the Pulumi Netbird provider.
-version: 2
+version: 1
 
 project_name: pulumi-resource-netbird
 

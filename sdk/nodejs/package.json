@@ -9,7 +9,10 @@
         "netbird"
     ],
     "homepage": "https://netbird.io",
-    "repository": "https://github.com/KitStream/netbird-pulumi-provider",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/KitStream/netbird-pulumi-provider.git"
+    },
     "license": "Apache-2.0",
     "scripts": {
         "build": "tsc"

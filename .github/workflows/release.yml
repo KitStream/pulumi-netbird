@@ -4,13 +4,14 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: write
+  id-token: write
+
 jobs:
   publish_sdk:
     name: Publish SDKs
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
     strategy:
       matrix:
         go-version: [1.24.x]
@@ -60,11 +61,10 @@ jobs:
       - name: Build Provider
         run: |
           cd provider
-          go build -ldflags "-X main.version=${{ steps.get_version.outputs.VERSION }}" -o ../bin/pulumi-tfgen-netbird ./cmd/pulumi-tfgen-netbird
           go build -ldflags "-X main.version=${{ steps.get_version.outputs.VERSION }}" -o ../bin/pulumi-resource-netbird ./cmd/pulumi-resource-netbird
 
-      - name: Generate SDKs
-        run: ./scripts/generate_sdks.sh ${{ steps.get_version.outputs.VERSION }}
+      - name: Generate version.txt for .NET SDK
+        run: echo "${{ steps.get_version.outputs.VERSION }}" > sdk/dotnet/version.txt
 
       - name: Publish Node.js SDK
         run: |
@@ -72,6 +72,7 @@ jobs:
           npm install
           npm run build
           npm version ${{ steps.get_version.outputs.VERSION }} --no-git-tag-version
+          mkdir -p bin && cp package.json bin/
           npm publish --access public --provenance
 
       - name: Build Python SDK

@@ -10,16 +10,32 @@ Follow these steps to create the necessary accounts and generate API tokens for 
 npm supports **Trusted Publishing** via GitHub Actions, which is more secure than using static tokens.
 
 1.  **Sign up**: [https://www.npmjs.com/signup](https://www.npmjs.com/signup)
-2.  **Configure Trusted Publishing**:
-    *   **For Personal Accounts**: Log in -> **Settings** -> **Trusted Publishers**.
-    *   **For Organizations**: Log in -> Select your **Organization** -> **Settings** -> **Publishing** -> **"Add a new Trusted Publisher"**.
-    *   **If the package is already published**: Navigate to the package -> **Settings** -> **Publishing** -> **"Add a new Trusted Publisher"**.
-3.  **Fill in details**:
+2.  **Ensure Org Ownership**: You must be an **Owner/Admin** of the npm organization.
+3.  **Configure Trusted Publishing**:
+    *   **For Personal Accounts**: Log in -> **Settings** (from top right avatar) -> **Trusted Publishers**.
+    *   **For Organizations**:
+        1. Click your **profile picture** (top right) -> **"Organizations"**.
+        2. Select the organization where you want to publish (e.g., `KitStream`).
+        3. Look for the **"Settings"** tab (usually found after "Packages", "Members", "Teams").
+        4. **Troubleshooting: If the "Settings" tab is missing**:
+            *   Confirm you are an **Owner** of the organization. (npm sometimes only shows "Settings" to Owners, while Admins only see "Members", "Teams", "Billing").
+            *   **Direct URL**: Try navigating directly to `https://www.npmjs.com/org/YOUR_ORG_NAME/settings/publishing`. (e.g., replace `YOUR_ORG_NAME` with `kitstream`).
+            *   **Fallback Method**: If you cannot see organization-level settings, npm often hides them for organizations with zero packages. Follow the **Initial Publish** method below.
+        5. In the left sidebar or sub-menu, click **"Publishing"** or **"Trusted Publishers"**.
+        6. Click **"Add a new Trusted Publisher"**.
+    *   **Initial Publish (Fallback Method)**:
+        If you cannot find the organization-level settings, perform the first publish using a classic token:
+        1. Create an **Automation Token** at [npmjs.com/settings/tokens/new](https://www.npmjs.com/settings/tokens/new).
+        2. Add it to GitHub Secrets as `NPM_TOKEN`.
+        3. Trigger the first release (see [Triggering a Release](#3-triggering-a-release)).
+        4. Once the package exists (e.g., `@kitstream/netbird`), go to the package page on npm -> **Settings** -> **Publishing** to configure Trusted Publishing.
+4.  **Verify Package Scope**: Ensure the `name` in `sdk/nodejs/package.json` matches your organization (e.g., `@kitstream/netbird` if your org is `kitstream`).
+5.  **Fill in details**:
     *   **GitHub Organization/User**: `KitStream`.
     *   **GitHub Repository**: `netbird-pulumi-provider`.
     *   **Workflow Name**: `release.yml`.
     *   **Environment**: (Optional, leave blank if not using GitHub Environments).
-4.  Once configured, npm will trust the GitHub Actions workflow to publish without a static `NPM_TOKEN`.
+6.  **Done**: Once configured, npm will trust the GitHub Actions workflow to publish without a static `NPM_TOKEN`.
 
 ### Python (PyPI)
 *   **Sign up**: [https://pypi.org/account/register/](https://pypi.org/account/register/)

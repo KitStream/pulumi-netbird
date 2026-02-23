@@ -33,6 +33,27 @@ pip install pulumi_netbird
 go get github.com/KitStream/netbird-pulumi-provider/sdk/go/index
 ```
 
+### .NET
+```bash
+dotnet add package KitStream.Pulumi.Netbird
+```
+
+### Java
+
+Gradle:
+```groovy
+implementation("io.github.kitstream:netbird:0.0.1")
+```
+
+Maven:
+```xml
+<dependency>
+    <groupId>io.github.kitstream</groupId>
+    <artifactId>netbird</artifactId>
+    <version>0.0.1</version>
+</dependency>
+```
+
 ## Configuration
 
 The provider requires the following configuration settings:
@@ -74,20 +95,10 @@ git submodule update --init
 The submodule is configured with `ignore = dirty` in `.gitmodules`, so these
 working-tree modifications will never make the parent repo appear dirty.
 
-If you are developing or testing the provider locally, you can use the provided Python virtual environment to avoid conflicts with your system Python (e.g., Homebrew).
-
-### Python Setup
-A virtual environment is configured in the root directory. To activate it:
-
-```bash
-source .venv/bin/activate
-```
-
-This environment has the local Python SDK installed in editable mode, along with all necessary dependencies for running the examples.
 
 ## Documentation
 
-For more information on the available resources and data sources, see the [Pulumi Registry](https://www.pulumi.com/registry/packages/netbird/).
+For more information on the available resources and data sources, see the [Pulumi Registry](https://www.pulumi.com/registry/packages/netbird/). (TBD)
 
 ## Releasing
 

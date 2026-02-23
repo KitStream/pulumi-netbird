@@ -1,0 +1,21 @@
+plugins {
+    id("java")
+    id("application")
+}
+
+group = "myproject"
+version = "0.1.0"
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation("com.pulumi:pulumi:1.0.0")
+    implementation("io.github.kitstream:netbird:0.0.1")
+}
+
+application {
+    mainClass = "myproject.App"
+}

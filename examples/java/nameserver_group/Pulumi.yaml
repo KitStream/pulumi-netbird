@@ -1,0 +1,3 @@
+name: netbird-java-nameserver_group
+description: A Pulumi java program to create a netbird nameserver_group
+runtime: java

@@ -5,7 +5,24 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"unicode"
 )
+
+// toSnakeCase converts PascalCase to snake_case (e.g. "NetworkId" -> "network_id").
+func toSnakeCase(s string) string {
+	var result []rune
+	for i, r := range s {
+		if unicode.IsUpper(r) {
+			if i > 0 {
+				result = append(result, '_')
+			}
+			result = append(result, unicode.ToLower(r))
+		} else {
+			result = append(result, r)
+		}
+	}
+	return string(result)
+}
 
 type Arg struct {
 	Name  string
@@ -633,7 +650,7 @@ import pulumi_netbird as netbird
 %s)
 
 pulumi.export("resourceName", res.%s)
-`, prefix, res.PythonName, strings.ReplaceAll(res.Name, "_", "-"), strings.TrimSuffix(args, ",\n"), strings.ToLower(res.CheckField))
+`, prefix, res.PythonName, strings.ReplaceAll(res.Name, "_", "-"), strings.TrimSuffix(args, ",\n"), toSnakeCase(res.CheckField))
 
 	os.WriteFile(filepath.Join(dir, "__main__.py"), []byte(content), 0644)
 
@@ -709,6 +726,7 @@ func generateDotNet(dir string, res Resource, lang string) {
 	content := fmt.Sprintf(`using System.Collections.Generic;
 using Pulumi;
 using KitStream.Pulumi.Netbird;
+using KitStream.Pulumi.Netbird.Inputs;
 
 return await Deployment.RunAsync(() => 
 {

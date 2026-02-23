@@ -11,4 +11,4 @@ res = netbird.NetworkRouter("test-network-router",
     network_id=network.id,
     peer_groups=[group.id])
 
-pulumi.export("resourceName", res.networkid)
+pulumi.export("resourceName", res.network_id)

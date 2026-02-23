@@ -1,5 +1,6 @@
 # Binaries and build artifacts
 bin/
+provider/dist
 
 # Pulumi and Terraform state
 .pulumi/

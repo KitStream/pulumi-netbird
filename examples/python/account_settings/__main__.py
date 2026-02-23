@@ -7,4 +7,4 @@ group = netbird.Group("example-group",
 res = netbird.AccountSettings("test-account-settings",
     peer_approval_enabled=True)
 
-pulumi.export("resourceName", res.peerapprovalenabled)
+pulumi.export("resourceName", res.peer_approval_enabled)

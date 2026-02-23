@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Pulumi;
 using KitStream.Pulumi.Netbird;
+using KitStream.Pulumi.Netbird.Inputs;
 
 return await Deployment.RunAsync(() => 
 {

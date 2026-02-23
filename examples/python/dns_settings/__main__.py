@@ -7,4 +7,4 @@ group = netbird.Group("example-group",
 res = netbird.DnsSettings("test-dns-settings",
     disabled_management_groups=[group.id])
 
-pulumi.export("resourceName", res.disabledmanagementgroups)
+pulumi.export("resourceName", res.disabled_management_groups)
